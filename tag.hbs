@@ -28,7 +28,7 @@
         <div class="post-feed">
 
             {{!-- 加上該 Tag 的置頂文章 --}}
-            {{#get "posts" include="tags,author" filter="featured:true+primary_tag:{{tag.slug}}" limit="all"}}
+            {{#get "posts" include="tags,authors" filter="featured:true+primary_tag:{{tag.slug}}" limit="all"}}
                 {{#if posts}}
                     {{#foreach posts}}
                         {{> "post-card"}}
