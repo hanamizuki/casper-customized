@@ -23,6 +23,8 @@ into the {body} of the default.hbs template --}}
 
             {{#if feature_image}}
             <figure class="post-full-image">
+
+                {{ @page.show_title_and_feature_image }}
                 {{!-- This is a responsive image, it loads different sizes depending on device
                 https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
                 <img
