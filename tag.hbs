@@ -1,49 +1,57 @@
 {{!< default}}
 {{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
 
-{{#tag}}
-{{> header background=feature_image}} {{!--Special header.hbs partial to generate the <header> tag--}}
-    <div class="inner">
-        {{> "site-nav"}}
-        <div class="site-header-content">
-            <h1 class="site-title">{{name}}</h1>
-            <h2 class="site-description">
-                
-                <div class="site-description-content">
-                    {{description}}
-                </div>
-                <div class="site-description-tag-post-count">
-                    共有 {{plural ../pagination.total empty='posts' singular='% 篇文章' plural='% 篇文章'}}
-                </div>
-                
-            </h2>
-        </div>
-    </div>
-</header>
-{{/tag}}
 
-{{!-- The main content area --}}
-<main id="site-main" class="site-main outer">
-    <div class="inner">
+<section class="outer">
+    <div class="inner posts">
         <div class="post-feed">
 
-            {{!-- 加上該 Tag 的置頂文章 --}}
-            {{#get "posts" include="tags,authors" filter="featured:true+primary_tag:{{tag.slug}}" limit="all"}}
-                {{#if posts}}
-                    {{#foreach posts}}
-                        {{> "post-card"}}
-                    {{/foreach}}
+            {{#tag}}
+            <header class="post-card post-card-large">
+                {{#if feature_image}}
+                <div class="post-card-image-link">
+                    {{!-- This is a responsive image, it loads different sizes depending on device
+                    https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+                    <img class="post-card-image"
+                        srcset="{{img_url feature_image size="s"}} 300w,
+                                {{img_url feature_image size="m"}} 600w,
+                                {{img_url feature_image size="l"}} 1000w,
+                                {{img_url feature_image size="xl"}} 2000w"
+                        sizes="(max-width: 1000px) 400px, 800px"
+                        src="{{img_url feature_image size="m"}}"
+                        alt="{{title}}"
+                        loading="lazy"
+                    />
+                </div>
                 {{/if}}
-            {{/get}}
+                <div class="post-card-content">
+                    <div class="post-card-content-link">
+                        <header class="post-card-header">
+                            <div class="post-card-primary-tag">Tagged</div>
+                            <h2 class="post-card-title">{{name}}</h2>
+                        </header>
+                        <section class="post-card-excerpt">
+                            <p>
+                                {{#if description}}
+                                {{description}}
+                                {{else}}
+                                A collection of {{plural ../pagination.total empty='zero posts' singular='% post' plural='% posts'}}
+                                {{/if}}
+                            </p>
+                        </section>
+                    </div>
+                </div>{{!--/.post-card-content--}}
 
-            {{!-- 僅顯示沒有置頂的文章 --}}
+            </header>
+            {{/tag}}
+
             {{#foreach posts}}
-                {{#unless featured}}
-                    {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-                    {{> "post-card"}}
-                {{/unless}}
+
+                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                {{> "post-card"}}
+
             {{/foreach}}
 
         </div>
     </div>
-</main>
+</section>
