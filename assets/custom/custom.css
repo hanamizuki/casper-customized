@@ -1,0 +1,29 @@
+.gh-content strong {
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 22px;
+    padding: 4px 2px 4px 2px;
+    letter-spacing: 0;
+    background: white url("../custom/underline_hl.gif") repeat-x bottom;
+}
+.gh-content em {
+    text-decoration: none;
+    padding: 0 3px;
+    padding-bottom: 3px;
+    background: url("../custom/underline_yhl.gif") repeat-x 120% 100%;
+}
+
+.gh-content s {
+    text-decoration: none;
+    padding: 0 3px;
+    padding-bottom: 3px;
+    background: url("../custom/underline_del.gif") repeat-x 120% 20%;
+}
+
+.gh-content mark {
+    text-decoration: none;
+    padding: 0 3px;
+    padding-bottom: 3px;
+    background: url("../custom/underline_cyc.gif") repeat-x 55% 130%;
+    letter-spacing: 1px;
+}
