@@ -8,6 +8,7 @@
 }
 .gh-content em {
     text-decoration: none;
+    font-style: normal;
     padding: 0 3px;
     padding-bottom: 3px;
     background: url("../custom/underline_yhl.gif") repeat-x 120% 100%;
