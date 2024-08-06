@@ -28,3 +28,13 @@
     background: url("../custom/underline_cyc.gif") repeat-x 55% 130%;
     letter-spacing: 1px;
 }
+
+.custom-comments {
+    margin-top: 30px;
+    color: #444444;
+    font-size: small;
+}
+.custom-comments a {
+    background: white url("../custom/underline_yhl.gif") repeat-x bottom;
+    color: black;
+}

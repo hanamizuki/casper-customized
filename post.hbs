@@ -50,6 +50,7 @@
             {{content}}
         </section>
 
+
     </article>
 
     {{#if comments}}
@@ -58,7 +59,25 @@
         </div>
     {{/if}}
 
+    {{!-- Custom --}}
+    <div class="gh-comments gh-canvas custom-comments">
+        <div class="custom-comments">
+            對這篇文章有什麼建議或想法嗎？請
+            <a href="https://twitter.com/share?url={{encode url absolute="true"}}&via=hanamizuki&text=我想回應《{{title}}》這篇文章"
+            onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;"
+            target="_blank" title="Share on Twitter">按此在 Twitter 留言</a>
+            或
+            <a href="https://threads.net/intent/post?text=我想回應《{{title}}》這篇文章%20%40hanamizuki%0A{{encode url absolute="true"}}">按此在 Threads 留言</a>
+            ，我會回應你。
+        </div>
+    </div>
+
+    {{!-- /Custom --}}
+
+
 </main>
+
+
 
 {{/post}}
 
