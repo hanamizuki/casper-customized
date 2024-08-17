@@ -38,3 +38,12 @@
     background: white url("../custom/underline_yhl.gif") repeat-x bottom;
     color: black;
 }
+
+.gh-viewport .gh-article-title {
+    font-size: calc(clamp(3.4rem, 1.36vw + 2.85rem, 4.6rem) * var(--factor, 0.7));
+}
+
+.gh-viewport .gh-article-excerpt {
+    font-size: calc(clamp(1.5rem, 0.45vw + 1.32rem, 1.9rem) * var(--factor, 0.9));
+    color: #555555;
+}

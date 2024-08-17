@@ -47,6 +47,8 @@ production stylesheet in assets/built/screen.css
 
 */
 
+/* Custom
+/* ---------------------------------------------------------- */
 @import "../custom/custom.css";
 
 /* 1. Variables
@@ -3332,3 +3334,5 @@ figcaption a {
 .pswp--minimal--dark .pswp__top-bar {
     background: none;
 }
+
+
