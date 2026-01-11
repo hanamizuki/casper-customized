@@ -1,0 +1,38 @@
+name: Deploy Ghost Theme
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.DEPLOY_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ vars.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy theme via rsync
+        run: |
+          rsync -avz --delete \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='.DS_Store' \
+            -e "ssh -i ~/.ssh/deploy_key" \
+            ./ ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }}:/app/ghost-hanamizuki/content/themes/casper_customized/
+
+      - name: Restart Ghost container
+        run: |
+          ssh -i ~/.ssh/deploy_key ${{ vars.SERVER_USER }}@${{ vars.SERVER_HOST }} \
+            'cd /app/ghost-hanamizuki && docker compose restart ghost'
+
+      - name: Cleanup
+        run: rm -f ~/.ssh/deploy_key
